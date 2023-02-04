@@ -26,6 +26,8 @@ cd (path to this repository)
 docker build -t world_api_node18.14-slim .
 ```
 
+---
+
 ### image を起動
 
 ```shell
