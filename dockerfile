@@ -16,5 +16,7 @@ RUN npm install
 COPY . .
 
 EXPOSE 3001
+# startするためのコマンド
+# package.jsonのstartに書いてあるもの
 # CMD [ "node", "server.js" ]
 CMD [ "node", "./bin/www" ]

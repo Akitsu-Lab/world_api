@@ -47,3 +47,9 @@ docker exec -it world_api bash
 ```shell
 docker stop world_api
 ```
+
+## 不要な docker image を削除
+
+```shell
+docker rmi $(docker images -f "dangling=true" -q)
+```
