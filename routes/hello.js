@@ -14,21 +14,25 @@ router.get("/", (req, res, next) => {
 
 // curl http://localhost:3001/hello/form
 router.get('/form', (req, res, next) => {
+    var msg = '*何か書いて送信してください。';
+    if (req.session.message != undefined) {
+        msg = "Last Message:" + req.session.message;
+    }
     var data = {
         title: 'Hello',
-        content: '*何か書いて送信してください'
+        content: msg
     };
-    res.send(data);
+    res.send(data)
 })
 
 // curl http://localhost:3001/hello/form -X POST -H "Content-Type: application/json" -d '{"message":"Node.jsのExpressはメジャーなフレームワークである。"}'
 router.post('/form', (req, res, next) => {
     var msg = req.body['message'];
-    // var msg = req.body.message;
+    req.session.message = msg;
     var data = {
         title: 'Hello!',
-        content: 'あなたは、「' + msg + `」と送信しました。`
-    }
+        content: "Last Message: " + req.session.message
+    };
     res.send(data);
 })
 // router.get("/get", (req, res, next) => {

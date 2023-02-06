@@ -4,6 +4,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const session = require('express-session'); // express-sessionのロード
 
 // ルート用モジュールのロード
 var indexRouter = require("./routes/index");
@@ -12,6 +13,14 @@ var helloRouter = require("./routes/hello");
 
 // Expressオブジェクトの作成と基本設定
 var app = express();
+
+var session_opt = {
+    secret: 'keyboard cat',
+    resave: 'false',
+    saveUninitialized: 'false',
+    cookie: { maxAge: 60 * 60 * 1000 }
+}
+app.use(session(session_opt));
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
