@@ -5,6 +5,8 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const session = require('express-session'); // express-sessionのロード
+// MySQLモジュールのロード
+var mysql = require('mysql2');
 
 // ルート用モジュールのロード
 var indexRouter = require("./routes/index");
@@ -20,6 +22,24 @@ var session_opt = {
     saveUninitialized: 'false',
     cookie: { maxAge: 60 * 60 * 1000 }
 }
+
+// MySQL接続情報
+var connection = mysql.createConnection({
+    host: 'world_db',
+    port: 3306,
+    user: 'root',
+    password: 'root',
+    database: 'world'
+})
+
+// データベースに接続できたらコンソールにConnectedを表示
+connection.connect(function(err) {
+  if (err) throw err;
+  console.log('Connected');
+});
+
+app.listen(3000);
+
 app.use(session(session_opt));
 
 // view engine setup
