@@ -39,8 +39,6 @@ connection.connect(function(err) {
   console.log('Connected');
 });
 
-app.listen(3000);
-
 app.use(session(session_opt));
 
 // view engine setup
