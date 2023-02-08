@@ -5,9 +5,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const session = require('express-session'); // express-sessionのロード
-// MySQLモジュールのロード
-var mysql = require('mysql2');
-var result = require('dotenv').config()
+
 // ルート用モジュールのロード
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -22,22 +20,6 @@ var session_opt = {
     saveUninitialized: 'false',
     cookie: { maxAge: 60 * 60 * 1000 }
 }
-
-// DB接続情報
-const env = process.env
-var connection = mysql.createConnection({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_DATABASE
-})
-
-// データベースに接続できたらコンソールにConnectedを表示
-connection.connect(function(err) {
-  if (err) throw err;
-  console.log('Connected');
-});
 
 app.use(session(session_opt));
 
