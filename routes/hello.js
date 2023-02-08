@@ -66,10 +66,46 @@ var connection = mysql.createConnection({
 })
 
 // テーブルcityのデータを取得
-// curl -v -sS http://localhost:3001/hello/sql
-router.get('/sql', (req, res) => {
+// curl -v -sS http://localhost:3001/hello/list
+router.get('/list', (req, res) => {
   connection.query(
-    'SELECT * FROM city where id=1',
+    'SELECT * FROM city',
+    (error, result) => {
+      res.send(result);
+    }
+  );
+});
+
+// curl -v -sS http://localhost:3001/hello/find
+router.get('/find', (req, res) => {
+  connection.query(
+    'SELECT * FROM city',
+    (error, result) => {
+      res.send(result[0].Name);
+    }
+  );
+});
+
+// curl -v -sS http://localhost:3001/hello/findId/1
+// connection.euqry(<SQL文>, function (err, rows, fields) {});
+router.get('/findId/:id', (req, res) => {
+console.log(req.params.id)
+  connection.query(
+    'SELECT * FROM city where id=?',[req.params.id],
+    (error, result) => {
+      res.send(result);
+    }
+  );
+});
+
+// curl -v -sS http://localhost:3001/hello/findName/tokyo
+// connection.euqry(<SQL文>, function (err, rows, fields) {});
+router.get('/findName/:name', (req, res) => {
+console.log(req.params.name)
+var query = '%'+req.params.name+'%'
+  connection.query(
+//    'SELECT * FROM city where Name=?',[req.params.name],
+    'SELECT * FROM city where Name like ?',[query],
     (error, result) => {
       res.send(result);
     }
