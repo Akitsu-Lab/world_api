@@ -8,7 +8,7 @@ var logger = require("morgan");
 // ルート用モジュールのロード
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-
+var countryRouter = require("./routes/country");
 // Expressオブジェクトの作成と基本設定
 var app = express();
 
@@ -26,6 +26,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // アクセスのためのapp.use作成
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/country", countryRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
