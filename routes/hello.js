@@ -112,6 +112,20 @@ var query = '%'+req.params.name+'%'
   );
 });
 
+// curl -v -sS http://localhost:3001/hello/country/japan
+// connection.euqry(<SQL文>, function (err, rows, fields) {});
+router.get('/country/:name', (req, res) => {
+console.log(req.params.name)
+var query = '%'+req.params.name+'%'
+  connection.query(
+//    'SELECT * FROM city where Name=?',[req.params.name],
+    'SELECT * FROM country where Name like ?',[query],
+    (error, result) => {
+      res.send(result);
+    }
+  );
+});
+
 // データベースに接続できたらコンソールにConnectedを表示
 //connection.connect(function(err) {
 //  if (err) throw err;
