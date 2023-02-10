@@ -10,11 +10,10 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var countryRouter = require("./routes/country");
 // cors対策
-var cors = require('cors');
+var cors = require("cors");
 
 // Expressオブジェクトの作成と基本設定
 var app = express();
-
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
