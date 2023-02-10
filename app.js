@@ -9,8 +9,12 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var countryRouter = require("./routes/country");
+// cors対策
+var cors = require('cors');
+
 // Expressオブジェクトの作成と基本設定
 var app = express();
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -43,6 +47,16 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
+// cors対策
+app.use(cors());
+/* 公式サイト */
+/* https://www.npmjs.com/package/cors */
+//app.use(cors({
+//    origin: 'http://localhost:3000', //アクセス許可するオリジン
+//    credentials: true, //レスポンスヘッダーにAccess-Control-Allow-Credentials追加
+//    optionsSuccessStatus: 200 //レスポンスstatusを200に設定
+//}))
 
 // module.expressの設定
 module.exports = app;
