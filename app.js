@@ -51,11 +51,14 @@ app.use(function (err, req, res, next) {
 app.use(cors());
 /* 公式サイト */
 /* https://www.npmjs.com/package/cors */
-//app.use(cors({
-//    origin: 'http://localhost:3000', //アクセス許可するオリジン
-//    credentials: true, //レスポンスヘッダーにAccess-Control-Allow-Credentials追加
-//    optionsSuccessStatus: 200 //レスポンスstatusを200に設定
-//}))
+// app.use(
+//   cors({
+//     // origin: "http://localhost:3000", //アクセス許可するオリジン
+//     origin: "*", //アクセス許可するオリジン
+//     credentials: true, //レスポンスヘッダーにAccess-Control-Allow-Credentials追加
+//     optionsSuccessStatus: 200, //レスポンスstatusを200に設定
+//   })
+// );
 
 // module.expressの設定
 module.exports = app;
