@@ -21,11 +21,19 @@ var connection = mysql.createConnection({
 /* 例：curl http://localhost:3001/country */
 /* connection.euqry(<SQL文>, function (err, rows, fields) {}); */
 router.get("/", function (req, res, next) {
-  res.set({ "Access-Control-Allow-Origin": "*" }); // ここでヘッダーにアクセス許可の情報を追加
-  var query = "SELECT * FROM country";
-  connection.query(query, (error, result) => {
-    res.send(result);
-  });
+  if (!res.hasHeader) {
+    // ここでヘッダーにアクセス許可の情報を追加
+    res.set({
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "*",
+      "Access-Control-Allow-Headers": "*",
+    });
+  } else {
+    var query = "SELECT * FROM country";
+    connection.query(query, (error, result) => {
+      res.send(result);
+    });
+  }
 });
 
 module.exports = router;
