@@ -57,6 +57,7 @@ app.use(cors());
 //     origin: "*", //アクセス許可するオリジン
 //     credentials: true, //レスポンスヘッダーにAccess-Control-Allow-Credentials追加
 //     optionsSuccessStatus: 200, //レスポンスstatusを200に設定
+//     methods: ["GET", "HEAD", "POST", "OPTIONS"],
 //   })
 // );
 
