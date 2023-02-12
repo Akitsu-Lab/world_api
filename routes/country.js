@@ -22,6 +22,8 @@ var connection = mysql.createConnection({
 /* connection.euqry(<SQL文>, function (err, rows, fields) {}); */
 router.get("/", function (req, res, next) {
   try {
+    res.set({ "Access-Control-Allow-Origin": "*" });
+    res.set({ "Access-Control-Request-Private-Network": "true" });
     var query = "SELECT * FROM country";
     connection.query(query, (error, result) => {
       res.send(result);
