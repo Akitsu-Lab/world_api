@@ -38,6 +38,22 @@ router.get("/", function (req, res, next) {
 });
 
 /********************************
+ * cityの一件(id)情報を表示.
+ * 例：curl http://localhost:3001/city/1
+ *********************************/
+
+router.get("/:id", function (req, res, next) {
+  const { id } = req.params;
+
+  const sql = "SELECT * FROM city WHERE id = ?";
+  const values = [id];
+
+  connection.query(sql, values, (err, result) => {
+    res.send(result);
+  });
+});
+
+/********************************
  * cityを追加する.
  * 例: curl -X POST -H "Content-Type: application/json" -d '{"id": "5000", "name": "SOTAcity", "countryCode": "JPN", "district": "SOTA", "population": "1"}' http://localhost:3001/city
  *********************************/
