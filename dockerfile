@@ -12,6 +12,12 @@ RUN npm install
 # 本番用にコードを作成している場合
 # RUN npm install --only=production
 
+ENV DB_HOST world_db
+ENV DB_PORT 3306
+ENV DB_USER root
+ENV DB_PASS rootpass
+ENV DB_DATABASE world
+
 # アプリケーションのソースをバンドルする
 COPY . .
 
