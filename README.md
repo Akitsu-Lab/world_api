@@ -30,8 +30,13 @@ docker build -t world_api_node18.14-slim .
 
 ### image を起動
 
+```sh
+# ネットワークを作成
+docker network create my_network
+```
+
 ```shell
-docker run --name world_api --rm -d -p 3001:3001 world_api_node18.14-slim
+docker run --name world_api --rm -d -p 3001:3001 --network my_network world_api_node18.14-slim
 ```
 
 docker run --name <コンテナ名> --rm -d -p <ホスト側ポート>:<コンテナ側ポート> <イメージ名>
