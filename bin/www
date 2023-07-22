@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+// アプリケーションを起動するためのエントリーポイントとして使われるファイル
 /**
  * Module dependencies.
  */
