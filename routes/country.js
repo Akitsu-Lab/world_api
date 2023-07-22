@@ -17,9 +17,12 @@ var connection = mysql.createConnection({
   database: process.env.DB_DATABASE,
 });
 
-/* 国の一覧情報を表示. */
-/* 例：curl http://localhost:3001/country */
-/* connection.euqry(<SQL文>, function (err, rows, fields) {}); */
+/********************************
+ * 国の一覧情報を表示.
+ * 例：curl http://localhost:3001/country
+ * connection.euqry(<SQL文>, function (err, rows, fields) {});
+ *********************************/
+
 router.get("/", function (req, res, next) {
   try {
     res.set({ "Access-Control-Allow-Origin": "*" });
