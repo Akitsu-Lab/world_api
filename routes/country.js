@@ -7,7 +7,9 @@ var mysql = require("mysql2");
 // .envモジュールのロード
 var result = require("dotenv").config();
 
-// DB接続情報
+/********************************
+ * DB接続情報
+ *********************************/
 var env = process.env;
 var connection = mysql.createConnection({
   host: process.env.DB_HOST,
